@@ -8,19 +8,23 @@ let notesList = document.getElementById("notesList")
 let noNotesAvailableEl = document.getElementById("no-notes-available-el")
 
 
-let notesArray = JSON.parse(localStorage.getItem("notesArray"))  || []
+let notesArray = JSON.parse(localStorage.getItem("notesArray")) || []
 
 if(notesArray){
     for(let i=0; i<notesArray.length; i++){
-        notesList.innerHTML = notesArray.join('')
+         notesList.innerHTML = notesArray.join('')
     }
-}else{
-    noNotesAvailableEl.textContent = "No notes available, please add a note."
-}
+
+//     notesArray.forEach((obj, index) => {
+//         let keys = Object.keys(obj)
+
+//         notesList.innerHTML = `<li>${keys.value}</li>`
+//     });
+// }
 
 
 function createNote(){
-    return `<li>${titleEl.value}</li>`
+    return `{${titleEl.value}: '${noteEl.value}'}`
 }
 
 
@@ -29,7 +33,7 @@ saveBtn.addEventListener('click', function(e){
     
     let newNote = createNote()
 
-    notesList.innerHTML += newNote
+    notesList.innerHTML += `<li>${titleEl.value}</li>`
 
     
     if(newNote){
