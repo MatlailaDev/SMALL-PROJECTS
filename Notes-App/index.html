@@ -5,13 +5,20 @@
         <!--GOOGLE FONTS-->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">        
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">  
+        
+        <!-- our project is using icons from Solid, Sharp Thin, Sharp Duotone Thin + Brands -->
+        <link href="./assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
+        <link href="./assets/fontawesome/css/brands.css" rel="stylesheet" />
+        <link href="./assets/fontawesome/css/solid.css" rel="stylesheet" />
+        <link href="./assets/fontawesome/css/sharp-thin.css" rel="stylesheet" />
+        <link href="./assets/fontawesome/css/sharp-duotone-thin.css" rel="stylesheet" />
         <!--MY STYLES-->
         <link rel="stylesheet" href="./css/index.css">
     </head>
     <body>
         <header>
-            <h1>Notes App</h1>
+            <h1>NOTES<span><i class="fa-solid fa-pen-to-square"></i></span></h1>
         </header>
         
         <main>
@@ -29,6 +36,7 @@
             <section>
                 <h2>Saved Notes</h2>
                 <ul id="notesList"></ul>
+                <h4 id="no-notes-available-el"></h4>
             </section>
         </main>
         
