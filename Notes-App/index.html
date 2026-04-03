@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Notes App</title>
+        <!--GOOGLE FONTS-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">        
+        <!--MY STYLES-->
+        <link rel="stylesheet" href="./css/index.css">
+    </head>
+    <body>
+        <header>
+            <h1>Notes App</h1>
+        </header>
+        
+        <main>
+            <form>
+                <label for="titleEl">Title:</label>
+                <input type="text" id="titleEl">
+
+                <label for="note-el">Add your note:</label>
+                <textarea id="note-el" name="note-el"></textarea>
+
+                <button id="save">Save</button>
+                <button id="clear">Clear</button>
+            </form>
+
+            <section>
+                <h2>Saved Notes</h2>
+                <ul id="notesList"></ul>
+            </section>
+        </main>
+        
+        <footer>
+            <p>For more of my work visit "Portfolio link"</p>
+        </footer>
+        
+        <script src="./javascript/script.js"></script>
+    </body>
+</html>
