@@ -31,6 +31,12 @@ header h1{
     color: #ECE5F0;
     background-color: #172815;
     width: 185px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: auto 0;
+
 }
 
 header h1 span{
@@ -53,7 +59,7 @@ main{
     display: flex;
     justify-content: center;
     gap: 250px;
-    margin: 150px auto;
+    margin: 50px auto;
 }
 
 main form{

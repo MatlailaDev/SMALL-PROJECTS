@@ -12,19 +12,28 @@ let notesArray = JSON.parse(localStorage.getItem("notesArray")) || []
 
 if(notesArray){
     for(let i=0; i<notesArray.length; i++){
-         notesList.innerHTML = notesArray.join('')
+         notesList.innerHTML = `<li>${notesArray.join('')}</li>`
     }
 
-//     notesArray.forEach((obj, index) => {
-//         let keys = Object.keys(obj)
+    console.log(notesArray)
 
-//         notesList.innerHTML = `<li>${keys.value}</li>`
-//     });
-// }
+    // notesArray.forEach((obj, index) => {
+    //     let keys = Object.keys(obj)
+
+    //     console.log(`Object at index ${index} has keys:`, keys);
+
+    //     keys.forEach(key => {
+    //         notesList.innerHTML = `<li>${obj[key]}</li>`
+    //     })
+        
+    // });
+}
 
 
 function createNote(){
-    return `{${titleEl.value}: '${noteEl.value}'}`
+    let input = titleEl.value;
+    let inputToKey = input.replace(/\s+/g, "");
+    return `{${inputToKey}: '${noteEl.value}'}`
 }
 
 
