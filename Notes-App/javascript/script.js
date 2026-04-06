@@ -11,28 +11,21 @@ let noNotesAvailableEl = document.getElementById("no-notes-available-el")
 let notesArray = JSON.parse(localStorage.getItem("notesArray")) || []
 
 if(notesArray){
-    for(let i=0; i<notesArray.length; i++){
-         notesList.innerHTML = `<li>${notesArray.join('')}</li>`
-    }
+    
+    notesArray.forEach((item, index) => {
+        const cleanItem = item.replace('{', '').replace('}', '');
+        const [key, value] = cleanItem.split(':').map(part => part.trim().replace(/'/g,''))
 
-    console.log(notesArray)
-
-    // notesArray.forEach((obj, index) => {
-    //     let keys = Object.keys(obj)
-
-    //     console.log(`Object at index ${index} has keys:`, keys);
-
-    //     keys.forEach(key => {
-    //         notesList.innerHTML = `<li>${obj[key]}</li>`
-    //     })
+        console.log(`${key.replace("_", " ")}`)
         
-    // });
+        notesList.innerHTML += `<li>${key.replace("_", " ")}</li>`
+    })
 }
 
 
 function createNote(){
     let input = titleEl.value;
-    let inputToKey = input.replace(/\s+/g, "");
+    let inputToKey = input.replace(/\s+/g, "_");
     return `{${inputToKey}: '${noteEl.value}'}`
 }
 
