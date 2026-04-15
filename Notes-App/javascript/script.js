@@ -5,7 +5,7 @@ let noteEl = document.getElementById("note-el")
 let saveBtn = document.getElementById("save")
 let clearBtn = document.getElementById("clear")
 let notesList = document.getElementById("notesList")
-let noNotesAvailableEl = document.getElementById("no-notes-available-el")
+let DisplayNote = document.getElementById("displayNote")
 
 
 let notesArray = JSON.parse(localStorage.getItem("notesArray")) || []
@@ -13,12 +13,44 @@ let notesArray = JSON.parse(localStorage.getItem("notesArray")) || []
 if(notesArray){
     
     notesArray.forEach((item, index) => {
-        const cleanItem = item.replace('{', '').replace('}', '');
+        const cleanItem = item.replace('{', '').replace('}', '')
         const [key, value] = cleanItem.split(':').map(part => part.trim().replace(/'/g,''))
 
         console.log(`${key.replace("_", " ")}`)
-        
-        notesList.innerHTML += `<li>${key.replace("_", " ")}</li>`
+
+        notesList.innerHTML += `<li class="note-item">${key.replace("_", " ")}
+                                    <br>
+                                    <pre style = 'display:none'>${value}</pre>
+                                </li>`
+    })
+    
+    document.querySelectorAll('.note-item').forEach(item => {
+        const cleanItem = item.textContent.replace('{', '').replace('}', '')
+        const [key, value] = cleanItem.split(':').map(part => part.trim().replace(/'/g,''))
+        let mainSection = document.querySelector('main section')
+
+        item.addEventListener('click', function(){
+            document.querySelectorAll('pre').forEach(pre => {
+                pre.style.display = 'none'
+
+            })
+
+            const targetPre = this.querySelector('pre')
+
+            if(targetPre){
+                targetPre.style.display = 'block'
+                notesList.style.display = 'none'
+                mainSection.style.backgroundColor = '#ECE5F0'
+
+                DisplayNote.style.backgroundColor = '#ECE5F0'
+                DisplayNote.innerHTML = `<li class="note-item"> ${key}
+                                        </li>`
+
+                DisplayNote.style.whiteSpace = "pre-line"
+                
+    
+            }
+        })
     })
 }
 
