@@ -1,0 +1,153 @@
+<!doctype html>
+<html>
+    <head>
+        <title>School Registration App</title>
+        <!--GOOGLE FONTS-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">  
+        
+        <!-- My project is using icons from Solid, Sharp Thin, Sharp Duotone Thin + Brands -->
+        <link href="./assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
+        <link href="./assets/fontawesome/css/brands.css" rel="stylesheet" />
+        <link href="./assets/fontawesome/css/solid.css" rel="stylesheet" />
+        <link href="./assets/fontawesome/css/sharp-thin.css" rel="stylesheet" />
+        <link href="./assets/fontawesome/css/sharp-duotone-thin.css" rel="stylesheet" />
+        <!--MY STYLES-->
+        <link rel="stylesheet" href="./css/index.css">
+    </head>
+    <body>
+        <header>
+            <h1>Student Registration</h1>
+        </header>
+
+        <main>
+            <section>
+                <h2>Please fill in the form</h2>
+                 <form> 
+                    <fieldset>
+                        <legend>Personal Info</legend>
+
+                        <p>
+                            <label for="name">Student Name</label>
+                            <input type="text" id="name" placeholder="Enter Your Name" required>
+                        </p>
+
+                        <p>
+                            <label for="surname">Surname</label>
+                            <input type="text" id="surname" placeholder="Enter Your Surname" required>
+                        </p>
+
+                        <p>
+                            <label for="id">ID</label>
+                            <input type="number" id="id" placeholder="Identity Number" maxlength="13" required>
+                        </p>
+
+                        <p>
+                            <label for="age">Age</label>
+                            <input type="number" name="age" id="age" placeholder="Enter Your Age" required>
+                        </p>
+
+                        <p>
+                            <label for="gender">Gender</label>
+                            <input type="text" name="gender" id="gender" placeholder="Your Gender" required>
+                        </p>
+
+                        <p>
+                            <label for="race">Race</label>
+                            <input type="text" name="race" id="race" placeholder="Race">
+                        </p>
+
+                        <p>
+                            <label for="student_number">Student Number</label>
+                            <input type="number" name="student_number" id="student_number" placeholder="Enter your student number" maxlength="7" required>
+                        </p>
+
+                        <p>
+                            <label for="contact">Contact Number</label>
+                            <input type="tel" name="number" id="contact" placeholder="Enter your contact number">
+                        </p>
+
+                        <p>
+                            <label for="email">Email</label>
+                            <input type="email" name="email" id="email" placeholder="Enter your email account">
+                        </p>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Course Details</legend>
+
+                        <p>
+                            <label for="faculty">Faculty</label>
+                            <input type="text" id="faculty" placeholder="faculty" required>
+                        </p>
+
+                        <p>
+                            <label for="course">Course</label>
+                            <input type="text" name="course" id="course" placeholder="course" required>
+                        </p>
+
+                        <!-- <p class="courses">
+                            <label for="diploma">Diploma</label>
+                            <input type="radio" name="level" id="diploma" value="diploma">
+                        </p>
+                        
+                        <p class="courses">
+                            <label for="degree">Degree</label>
+                            <input type="radio" name="level" id="degree" value="degree">
+                        </p>
+                        
+                        <p class="courses">
+                            <label for="masters">Masters</label>
+                            <input type="radio" name="level" id="masters" value="masters">
+                        </p>
+
+                        <p class="courses">
+                            <label for="phd">PhD</label>
+                            <input type="radio" name="level" id="phd" value="phd">
+                        </p> -->
+
+                        <p>
+                            <label for="level">Course Level</label>
+                            <select name="level" id="level">
+                                <option value="diploma">Diploma</option>
+                                <option value="degree">Degree</option>
+                                <option value="masters">Masters</option>
+                                <option value="phd">PhD</option>
+                            </select>
+                        </p>
+
+                        <p id="modules"></p>
+
+                        <p>
+                            <label for="year_of_study">Year Of Study</label>
+                            <input type="number" name="year_of_study" id="year_of_study" placeholder="Enter your year of study" maxlength="1" required>
+                        </p>
+                    </fieldset>
+
+                    <!-- Documents will be handled later , conditional to form being correctly filled and validated the document page will then display -->
+                    <!-- <form action="#" method="post">
+                        <fieldset>
+                            <legend>Documents</legend>
+
+                            <p>
+                                <input type="file" name="documents">
+                                <input type="submit" value="Upload">
+                            </p>
+                        </fieldset>
+                    </form> -->
+
+                    <button id="registerBtn">Register</button>
+                    <button type="reset">Clear</button>
+                </form>
+                
+            </section>
+            
+
+
+
+        </main>
+        
+        <script src="./javascript/script.js"></script>
+    </body>
+</html>

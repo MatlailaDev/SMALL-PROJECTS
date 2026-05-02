@@ -7,7 +7,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">  
         
-        <!-- our project is using icons from Solid, Sharp Thin, Sharp Duotone Thin + Brands -->
+        <!-- My project is using icons from Solid, Sharp Thin, Sharp Duotone Thin + Brands -->
         <link href="./assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
         <link href="./assets/fontawesome/css/brands.css" rel="stylesheet" />
         <link href="./assets/fontawesome/css/solid.css" rel="stylesheet" />
@@ -19,9 +19,12 @@
     <body>
         <header>
             <h1>NOTES<span><i class="fa-solid fa-pen-to-square"></i></span></h1>
+            <button class="add-note-btn" id="add-note-btn">Add Note <span>+</span></button>
+            <button class="view-notes-btn" id="view-notes-btn">View Notes</button>
         </header>
         
         <main>
+
             <form>
                 <label for="titleEl">Title:</label>
                 <input type="text" id="titleEl">
@@ -32,15 +35,19 @@
                 <button id="save">Save</button>
                 <button id="clear">Clear</button>
             </form>
-
+            
+            
             <section>
-                <header>
-                    <h2>Saved Notes</h2>
-                </header>
+                <div class="close-note">X</div>
                 <div id="displayNote"></div>
                 <ul id="notesList"></ul>
             </section>
+
+            
+
         </main>
+
+        
         
         <footer>
             <p>For more of my work visit "Portfolio link"</p>
