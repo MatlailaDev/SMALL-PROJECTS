@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>handle Form Submit</title>
+</head>
+<body>
+    
+    <form id="form">
+        
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" autocomplete="on">
+    
+        <label for="surname">Surname</label>
+        <input type="text" name="surname" id="surname" autocomplete="on">
+    
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" autocomplete="on">
+
+
+        <button type="submit" id="submitBtn">Submit</button>
+
+        <table id="myTable" border="1">
+            <thead>
+                <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Email</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </form>
+
+    <script>
+        let name = document.getElementById("name")
+        let surname = document.getElementById("surname")
+        let email = document.getElementById("email")
+        let submitBtn = document.getElementById("submitBtn")
+        let container = document.getElementById("container")
+
+        const dataArray = []
+
+        const tbody = document.querySelector("#myTable tbody");
+
+        let dataArrayFromLocalStorage = JSON.parse(localStorage.getItem("dataArray"))
+
+        if(dataArrayFromLocalStorage){
+            dataArrayFromLocalStorage.forEach(entry => {
+                let row = `<tr>
+                        <td>${entry.name}</td>
+                        <td>${entry.surname}</td>
+                        <td>${entry.email}</td>
+                        </tr>`;
+                tbody.innerHTML += row;
+
+            });
+        }
+
+
+        form.addEventListener('submit', function(event){
+            event.preventDefault()
+
+            // 1. Create a formData object from the form
+            const formData = new FormData(event.target)
+
+            // 2. Convert entries to single object
+            const newObject = Object.fromEntries(formData.entries())
+
+            // 3. Push the object into array
+
+            if(newObject){
+                dataArray.push(newObject)
+
+                localStorage.setItem("dataArray", JSON.stringify(dataArray))
+            }
+
+    
+            // We don't need a forEach loop here because newObject can be accessed directly to display on screen
+
+            // let row = `<tr>
+            //             <td>${newObject.name}</td>
+            //             <td>${newObject.surname}</td>
+            //             <td>${newObject.email}</td>
+            //             </tr>`;
+            // tbody.innerHTML += row;
+
+            
+            // Better Option(More Efficient)..remember the push to array at the top is important 
+
+            const newRow = tbody.insertRow(-1) //- "-1" inserts a row at the end of the tbody
+
+            // Create cells for each piece of data
+            const cell1 = newRow.insertCell(0)
+            const cell2 = newRow.insertCell(1)
+            const cell3 = newRow.insertCell(2)
+
+            // Set the text content (safer than innerHTML to prevent script injection)
+            cell1.textContent = newObject.name
+            cell2.textContent = newObject.surname
+            cell3.textContent = newObject.email
+
+
+                        
+        
+            
+            console.log(dataArray)
+            console.log(dataArray.length)
+            
+            
+            
+        })
+    </script>
+</body>
+</html>
