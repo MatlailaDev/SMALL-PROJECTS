@@ -1,30 +1,48 @@
 <!doctype html>
 <html>
     <head>
-        <title>School Database App</title>
+        <title>University Database App</title>
         <!--GOOGLE FONTS-->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">  
         
         <!-- My project is using icons from Solid, Sharp Thin, Sharp Duotone Thin + Brands -->
-        <link href="./assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
-        <link href="./assets/fontawesome/css/brands.css" rel="stylesheet" />
-        <link href="./assets/fontawesome/css/solid.css" rel="stylesheet" />
-        <link href="./assets/fontawesome/css/sharp-thin.css" rel="stylesheet" />
-        <link href="./assets/fontawesome/css/sharp-duotone-thin.css" rel="stylesheet" />
+        <link href="../assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
+        <link href="../assets/fontawesome/css/brands.css" rel="stylesheet" />
+        <link href="../assets/fontawesome/css/solid.css" rel="stylesheet" />
+        <link href="../assets/fontawesome/css/sharp-thin.css" rel="stylesheet" />
+        <link href="../assets/fontawesome/css/sharp-duotone-thin.css" rel="stylesheet" />
         <!--MY STYLES-->
         <link rel="stylesheet" href="./css/index.css">
     </head>
     <body>
         <header>
-            <h1>Student Registration</h1>
-
+            <div class="logo">
+                <i class="fa fa-university" aria-hidden="true"></i>
+                <h3>Javascript University</h3>
+            </div>
+            
+            <nav>
+                <button id="registerStudent">Register Student</button>
+                <button id="viewStudents">View Students</button>
+            </nav>
         </header>
 
         <main>
+
+            <article id="search">
+                <form id="searchForm">
+                    <label for="search">Search</label>
+                    <input type="search" name="search" id="search">
+                    <div class="search_button_wrapper">
+                        <button id="search">Search</button>
+                    </div>
+                </form>
+            </article>
+
             <section>
-                <h2>Please fill in the form</h2>
+                <h4>Please fill in the form</h4>
                  <form> 
                     <fieldset>
                         <legend>Personal Info</legend>
@@ -146,7 +164,7 @@
                 
             </section>
 
-            <div id="div">
+            <div id="tableDiv">
                 <h1>Registered Student Information</h1>
 
                 <table>

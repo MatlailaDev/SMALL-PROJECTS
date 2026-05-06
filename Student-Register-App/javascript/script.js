@@ -1,5 +1,12 @@
 "use strict"
 
+// Navigation variables
+let registerStudentBtn = document.getElementById("registerStudent")
+let viewStudentsBtn = document.getElementById("viewStudents")
+let search = document.getElementById("search")
+let mainSectionForm = document.querySelector("main section")
+
+
 // Form variables
 let form = document.querySelector("main section form")
 
@@ -22,6 +29,7 @@ let yearOfStudy = document.getElementById("year_of_study")
 
 
 // Table Variables
+let tableDiv = document.getElementById("tableDiv")
 let tbody = document.getElementById("tbody")
 
 
@@ -48,6 +56,12 @@ if(studentsArray){
         tbody.innerHTML += row
     })
 }
+
+// Hide Table on page load
+tableDiv.style.display = "none"
+
+// Hide Form on load
+mainSectionForm.style.display = "none"
 
 
 
@@ -104,5 +118,26 @@ form.addEventListener('submit', function(e){
 
     console.log(studentsArray)
     e.target.reset()
+
+})
+
+
+registerStudentBtn.addEventListener('click', function(e){
+    e.preventDefault()
+
+    search.style.display = 'none'
+    mainSectionForm.style.display = 'block'
+    document.body.style.backgroundSize = '0%'
+    registerStudentBtn.style.display = 'none'
+})
+
+viewStudentsBtn.addEventListener('click', function(e){
+    search.style.display = 'none'
+    mainSectionForm.style.display = 'none'
+    registerStudentBtn.style.display = 'block'
+    viewStudentsBtn.style.display = 'none'
+    tableDiv.style.display = "block"
+    document.body.style.backgroundSize = '0%'
+    
 
 })
