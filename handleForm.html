@@ -33,6 +33,8 @@
         </table>
     </form>
 
+    
+
     <script>
         let name = document.getElementById("name")
         let surname = document.getElementById("surname")
@@ -40,14 +42,12 @@
         let submitBtn = document.getElementById("submitBtn")
         let container = document.getElementById("container")
 
-        const dataArray = []
-
         const tbody = document.querySelector("#myTable tbody");
 
-        let dataArrayFromLocalStorage = JSON.parse(localStorage.getItem("dataArray"))
+        let dataArray = JSON.parse(localStorage.getItem("dataArray")) || []
 
-        if(dataArrayFromLocalStorage){
-            dataArrayFromLocalStorage.forEach(entry => {
+        if(dataArray){
+            dataArray.forEach(entry => {
                 let row = `<tr>
                         <td>${entry.name}</td>
                         <td>${entry.surname}</td>
@@ -56,6 +56,22 @@
                 tbody.innerHTML += row;
 
             });
+
+            const searchTerm = "john"
+
+            const searchResults = dataArray.filter(person => {
+                // Convert both the data and the search term to lowercase for a better match
+                const nameMatch = person.name.toLowerCase().includes(searchTerm.toLowerCase())
+                const surnameMatch = person.surname.toLowerCase().includes(searchTerm.toLowerCase())
+                let concatNameSurname = `${person.name} ${person.surname}`
+                const concatMatch = concatNameSurname.toLowerCase().includes(searchTerm.toLowerCase())
+
+                return nameMatch || surnameMatch || concatMatch
+            })
+            console.log(searchResults)
+            
+
+
         }
 
 
@@ -107,10 +123,14 @@
             
             console.log(dataArray)
             console.log(dataArray.length)
+
             
             
             
         })
+
+
+
     </script>
 </body>
 </html>

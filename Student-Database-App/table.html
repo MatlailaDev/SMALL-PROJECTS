@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+    <head>
+        <title>University Database App</title>
+        <!--GOOGLE FONTS-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">  
+        
+        <!-- My project is using icons from Solid, Sharp Thin, Sharp Duotone Thin + Brands -->
+        <link href="../assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
+        <link href="../assets/fontawesome/css/brands.css" rel="stylesheet" />
+        <link href="../assets/fontawesome/css/solid.css" rel="stylesheet" />
+        <link href="../assets/fontawesome/css/sharp-thin.css" rel="stylesheet" />
+        <link href="../assets/fontawesome/css/sharp-duotone-thin.css" rel="stylesheet" />
+        <!--MY STYLES-->
+        <link rel="stylesheet" href="./css/index.css">
+    </head>
+    <body>
+        <header>
+            <a class="logo" href="./index.html">
+                <i class="fa fa-university" aria-hidden="true"></i>
+                <h3>Javascript University</h3>
+            </a>
+            
+            <nav>
+                <a href="./form.html">Register Student</a>
+                <a href="./search.html">Search</a>
+            </nav>
+        </header>
+
+        <main>
+
+            <div id="tableDiv">
+                <h1>Registered Student Information</h1>
+
+                <table>
+                    <caption>Student Information</caption>
+
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Surname</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">Age</th>
+                            <th scope="col">Gender</th>
+                            <th scope="col">Race</th>
+                            <th scope="col">Student Number</th>
+                            <th scope="col">Contact Number</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Faculty</th>
+                            <th scope="col">Course</th>
+                            <th scope="col">Course Level</th>
+                            <th scope="col">Year Of Study</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="tbody"></tbody>
+                </table>
+            </div>
+            
+
+        </main>
+
+        <footer>
+            <p>For more of my work visit "Portfolio link"</p>
+        </footer>
+        
+        <script src="./javascript/script.js"></script>
+    </body>
+</html>

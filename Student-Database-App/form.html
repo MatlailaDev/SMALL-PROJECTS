@@ -18,32 +18,23 @@
     </head>
     <body>
         <header>
-            <div class="logo">
+            <a class="logo" href="./index.html">
                 <i class="fa fa-university" aria-hidden="true"></i>
                 <h3>Javascript University</h3>
-            </div>
+            </a>
             
             <nav>
-                <button id="registerStudent">Register Student</button>
-                <button id="viewStudents">View Students</button>
+                <a href="./table.html">View Students</a>
+                <a href="./search.html">Search</a>
             </nav>
         </header>
 
         <main>
 
-            <article id="search">
-                <form id="searchForm">
-                    <label for="search">Search</label>
-                    <input type="search" name="search" id="search">
-                    <div class="search_button_wrapper">
-                        <button id="search">Search</button>
-                    </div>
-                </form>
-            </article>
-
             <section>
                 <h4>Please fill in the form</h4>
                  <form> 
+                    <span class="flex">
                     <fieldset>
                         <legend>Personal Info</legend>
 
@@ -145,58 +136,41 @@
                     </fieldset>
 
                     <!-- Documents will be handled later , conditional to form being correctly filled and validated the document page will then display -->
-                    <!-- <form action="#" method="post">
+                    <!--<form action="#" method="post">
                         <fieldset>
                             <legend>Documents</legend>
 
-                            <p>
-                                <input type="file" name="documents">
-                                <input type="submit" value="Upload">
+                            <p class="documents">
+                                <label for="proof_of_application">Proof of application</label>
+                                <input type="file" name="proof_of_application" id="proof_of_application">
+
+                                <label for="matric_certificate">Matric Certificate</label>
+                                <input type="file" name="matric_certificate" id="matric_certificate">
+
+                                <label for="Certified ID">Certified ID</label>
+                                <input type="file" name="certified_id" id="certified_id">
+                                
+                                <input type="submit" value="Upload" class="upload">
                             </p>
                         </fieldset>
-                    </form> -->
+                    </form>-->
+                    
+                    </span>
 
                     <div class="button-wrapper">
                         <button type="submit" id="registerBtn">Register</button>
                         <button type="reset">Clear</button>
                     </div>
+                
                 </form>
                 
             </section>
 
-            <div id="tableDiv">
-                <h1>Registered Student Information</h1>
-
-                <table>
-                    <caption>Student Information</caption>
-
-                    <thead>
-                        <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">Surname</th>
-                            <th scope="col">ID</th>
-                            <th scope="col">Age</th>
-                            <th scope="col">Gender</th>
-                            <th scope="col">Race</th>
-                            <th scope="col">Student Number</th>
-                            <th scope="col">Contact Number</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Faculty</th>
-                            <th scope="col">Course</th>
-                            <th scope="col">Course Level</th>
-                            <th scope="col">Year Of Study</th>
-                        </tr>
-                    </thead>
-
-                    <tbody id="tbody"></tbody>
-                </table>
-            </div>
-            
-            
-
-
-
         </main>
+
+        <footer>
+            <p>For more of my work visit "Portfolio link"</p>
+        </footer>
         
         <script src="./javascript/script.js"></script>
     </body>
