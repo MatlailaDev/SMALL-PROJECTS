@@ -7,6 +7,14 @@
 </head>
 <body>
     
+    <form action="#">
+        <label for="search"></label>
+        <input type="search" name="search" id="search">
+
+        <button id="searchBtn">Search</button>
+    </form>
+
+
     <form id="form">
         
         <label for="name">Name</label>
@@ -33,7 +41,10 @@
         </table>
     </form>
 
-    
+    <div id="container"></div>
+
+
+
 
     <script>
         let name = document.getElementById("name")
@@ -41,6 +52,7 @@
         let email = document.getElementById("email")
         let submitBtn = document.getElementById("submitBtn")
         let container = document.getElementById("container")
+        let searchBtn = document.getElementById("searchBtn")
 
         const tbody = document.querySelector("#myTable tbody");
 
@@ -57,18 +69,39 @@
 
             });
 
-            const searchTerm = "john"
+            
+            searchBtn.addEventListener('click', function(e){
+                let searchInput = document.getElementById("search")
+                e.preventDefault()
 
-            const searchResults = dataArray.filter(person => {
-                // Convert both the data and the search term to lowercase for a better match
-                const nameMatch = person.name.toLowerCase().includes(searchTerm.toLowerCase())
-                const surnameMatch = person.surname.toLowerCase().includes(searchTerm.toLowerCase())
-                let concatNameSurname = `${person.name} ${person.surname}`
-                const concatMatch = concatNameSurname.toLowerCase().includes(searchTerm.toLowerCase())
+                const searchTerm = searchInput.value
 
-                return nameMatch || surnameMatch || concatMatch
+                const searchResults = dataArray.filter(person => {
+                    // Convert both the data and the search term to lowercase for a better match
+                    const nameMatch = person.name.toLowerCase().includes(searchTerm.toLowerCase())
+                    const surnameMatch = person.surname.toLowerCase().includes(searchTerm.toLowerCase())
+                    let concatNameSurname = `${person.name} ${person.surname}`
+                    const concatMatch = concatNameSurname.toLowerCase().includes(searchTerm.toLowerCase())
+
+                    return nameMatch || surnameMatch || concatMatch
+                })
+                console.log(searchResults)
+                console.log(searchInput.value)
+
+                container.replaceChildren()
+
+                searchResults.forEach(result =>{
+                    let studentCard = `<div style="border: 1px solid #000000; text-align: center; margin-bottom: 10px">
+                                        ${result.name}<br>
+                                        ${result.surname}<br>
+                                        ${result.email}
+                                      </div>`
+                    
+                    container.innerHTML += studentCard
+
+                })
+                
             })
-            console.log(searchResults)
             
 
 
