@@ -17,7 +17,7 @@ body{
     gap: 17px;
 }
 
-
+/* Header */
 header{
     display: flex;
     align-items: center;
@@ -28,7 +28,7 @@ header{
     position: fixed;
     top: 0;
     width: 100%;
-    height: 55px;
+    height: 75px;
     
 }
 
@@ -43,7 +43,7 @@ header .logo{
 
 header .logo i{
     display: flex;
-    font-size: 25px;
+    font-size: 35px;
     color: #ECE5F0;
     margin: 5px auto;
 }
@@ -79,6 +79,7 @@ header nav a:hover{
     cursor: pointer;
 }
 
+/* Main */
 main{
     display: flex;
     justify-content: center;
@@ -86,43 +87,8 @@ main{
 
 }
 
-main .search{
-    margin: 80px auto;
-    width: 700px;
-}
 
-
-main .search form input{
-    display: flex;
-    justify-content: center;
-    border: none;
-    margin: auto auto;
-    width: 550px;
-    height: 50px;
-    border-radius: 30px;
-    font-size: 18px;
-    padding: 10px;
-}
-
-main .search input:focus{
-    outline: none;
-    border: none;
-    box-shadow: none;
-}
-
-main .search .search_button_wrapper{
-    display: flex;
-    justify-content: center;
-    margin: 20px auto;
-}
-
-main .search form button{
-    font-size: 25px;
-    width: 130px;
-    height: 40px;
-    cursor: pointer;
-}
-
+/* Main Form */
 main section{
     /* border: 2px solid #1D201F; */
     width: 40%;
@@ -213,7 +179,7 @@ button:hover{
     background-color: #ECE5F0;
 }
 
-
+/* Table */
 main div{
     margin: auto auto;
 }
@@ -238,7 +204,7 @@ td{
     align-items: center;
 }
 
-
+/* Footer */
 
 footer{
     background-color: #181D27;

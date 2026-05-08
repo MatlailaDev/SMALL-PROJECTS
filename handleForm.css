@@ -1,0 +1,60 @@
+h5, .logo{
+    text-align: center;
+    margin: auto auto;
+    background: #EEE;
+    color: #000000
+}
+
+h5{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+li{
+    list-style: none;
+}
+
+.details{
+    display: flex;
+    margin: 14px auto;
+}
+
+
+.logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+}
+
+.logo h4{
+    padding: 15px;
+}
+
+ul{
+    text-align: justify;
+    margin: auto 10px;
+}
+
+ul li{
+    padding: 3px;
+    margin-bottom: 0;
+}
+
+.card{
+    border-radius: 10px;
+    background-color: #000000;
+    color: white;
+    width: 300px;
+    height: 150px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.profile-image{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}

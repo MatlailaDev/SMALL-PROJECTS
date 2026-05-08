@@ -1,6 +1,226 @@
 body{
-    /* background-image: url(../assets/images/university-background.jpg);
+    /* background-image: url(../assets/backgrounds/university-background.jpg);
     background-size: cover; */
-    background-color: darkgray;
-    height: 80vh;
+    background-color: #000000;
+    
 }
+
+
+/* Search */
+main {
+    display: block;
+    margin-top: 120px;
+    width: 100%;
+}
+
+main .searchSection{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-content: center;
+    margin: 150px auto;
+    width: 100%;
+    max-height: 100vh;
+}
+
+main .searchSection h3{
+    
+    color: white;
+    font-size: 20px;
+}
+
+main .searchSection form label{
+    display: flex;
+    justify-content: center;
+    font-size: 75px;
+    color: #EEE;
+    margin-bottom: 50px;
+
+}
+
+main .searchSection form input{
+    display: flex;
+    justify-content: center;
+    border: none;
+    margin: auto auto;
+    width: 550px;
+    height: 50px;
+    border-radius: 30px;
+    font-size: 18px;
+    padding: 25px;
+}
+
+
+main .searchSection input:focus{
+    outline: none;
+    border: none;
+    box-shadow: none;
+}
+
+main .searchSection .search_button_wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 45px auto;
+    border-radius: 5px;
+}
+
+main .searchSection form button{
+    border: none;
+    font-size: 25px;
+    width: 125px;
+    height: 35px;
+    cursor: pointer;
+}
+
+main .searchSection form button:hover{
+    font-size: 27px;
+    width: 135px;
+    height: 45px;
+}
+
+
+/* Search Results */
+main .studentCardsSection{
+    display: none;
+    justify-content: center;
+    margin: auto auto;
+    background-color: #EEE;
+    width: 100%;
+    /* height: 100vh; */
+    text-align: center;
+}
+
+main .studentCardsSection h2{
+    padding: 20px;
+    font-size: 18px;
+}
+
+main .studentCardsSection span{
+    display: flex;
+    margin: auto auto;
+    gap: 10px;
+    width: 80vw;
+}
+
+.studentCard{
+    border: 1px solid #746a6a;
+    border-radius: 6px;
+    background-color: whitesmoke;
+    color: darkslateblue;
+    min-width: 300px;
+    height: 150px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.studentCard .logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    background-color: darkslategray;
+    color: #000000
+}
+
+.studentCard .logo i{
+    font-size: 18px;
+}
+
+.studentCard .logo h4{
+    font-size: 15px;
+    text-decoration: none;
+    padding: 15px;
+}
+
+.studentCard .details{
+    display: flex;
+    justify-content: center;
+    margin: 14px auto;
+    font-size: 17px;
+}
+
+.studentCard .details ul{
+    text-align: justify;
+    margin: auto 10px;
+}
+
+.studentCard .details ul li{
+    list-style: none;
+    padding: 3px;
+    margin-bottom: 0;
+}
+
+.studentCard .details img{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    padding-bottom: 2px;
+}
+
+.studentCard h5{
+    text-align: center;
+    margin: auto auto;
+    background-color: darkslategray;
+    color: #000000;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 2px;
+}
+
+/* Specific Student Information */
+
+.specificStudentInformationSection{
+    display: none;
+    padding: 10px;
+}
+
+
+.close{
+    display: none;
+    justify-content: end;
+    align-items: center;
+    place-content: center;
+    position: fixed;
+    right: 10px;
+    top: 90px;
+    font-size: 20px;
+    color: #EEE;
+    border: none;
+    background-color: #000000;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    
+
+}
+
+.specificStudentInformationSection h2{
+    font-size: 25px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+h2 span{
+    font-size: 28px;
+    border-radius: 8px;
+    background-color: #000000;
+    color: #EEE;
+    padding: 10px;
+}
+
+.specificStudentDetails{
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.specificStudentDetails table, tr, th, td, caption{
+    border: 1px solid #000000;
+    font-family: serif;
+    border-collapse: collapse;
+    padding: 0.5rem;
+}
+ 
