@@ -1,25 +1,24 @@
 "use strict"
 
 // Search variables
-let mainElement = document.getElementById("main") 
 let searchSection = document.querySelector(".searchSection")
 let searchForm = document.getElementById("searchForm")
 let searchBtn = document.getElementById("searchBtn")
 let searchFormInput = document.getElementById("search")
 let studentCardsSection = document.getElementById("studentCardsSection")
-let numberOfStudentsFound = document.querySelector("main #studentCardsSection h2")
+let numberOfStudentsFound = document.querySelector("#studentCardsSection h2")
 let cardsContainer = document.querySelector("main #studentCardsSection span")
 let close = document.getElementById("close")
 let specificStudentInformationSection = document.getElementById("specificStudentInformationSection")
 
 
 // Form variables
-let form = document.querySelector("main section form")
+let registerForm = document.getElementById("registerForm")
 
 // Personal Info Variables
 let name = document.getElementById("name")
 let surname = document.getElementById("surname")
-let identityNumber = document.getElementById("id")
+let identityNumber = document.getElementById("id_number")
 let age = document.getElementById("age")
 let gender = document.getElementById("gender")
 let race = document.getElementById("race")
@@ -41,30 +40,106 @@ let tbody = document.getElementById("tbody")
 // Runs on page load
 let studentsArray = JSON.parse(localStorage.getItem("studentsArray")) || []
 
+function displayStudents(student){
+                // let row = `<tr data-id = "${student.id}" class = "studentRow">
+                //                 <td>${student.name}</td>
+                //                 <td>${student.surname}</td>             
+                //                 <td>${student.id_number}</td>  
+                //                 <td>${student.age}</td>  
+                //                 <td>${student.gender}</td>  
+                //                 <td>${student.race}</td>  
+                //                 <td>${student.student_number}</td>  
+                //                 <td>${student.number}</td>  
+                //                 <td>${student.email}</td>  
+                //                 <td>${student.faculty}</td>  
+                //                 <td>${student.course}</td>  
+                //                 <td>${student.level}</td>  
+                //                 <td>${student.year_of_study}</td> 
+                //                 <td><i class="fa-solid fa-trash-can delete"></i></td>
+                //            </tr>`
+
+                // tbody.innerHTML += row
+
+
+                if(tbody){
+                    // Displaying the object data using a method better than innerHTML to avoid injection
+
+                    const newRow = tbody.insertRow(-1) // "-1" means last, so each row is added last
+                    // Add data-id to each newRow
+                    newRow.dataset.id = student.id
+
+                    const nameCell = newRow.insertCell(0)
+                    const surnameCell = newRow.insertCell(1)
+                    const idCell = newRow.insertCell(2)
+                    const ageCell = newRow.insertCell(3)
+                    const genderCell = newRow.insertCell(4)
+                    const raceCell = newRow.insertCell(5)
+                    const studentNumberCell = newRow.insertCell(6)
+                    const contactNumberCell = newRow.insertCell(7)
+                    const emailCell = newRow.insertCell(8)
+                    const facultyCell = newRow.insertCell(9)
+                    const courseCell = newRow.insertCell(10)
+                    const courseLevelCell = newRow.insertCell(11)
+                    const yearOfStudyCell = newRow.insertCell(12)
+                    const deleteCell = newRow.insertCell(13)
+        
+
+                    nameCell.textContent = student.name
+                    surnameCell.textContent = student.surname
+                    idCell.textContent = student.id_number
+                    ageCell.textContent = student.age
+                    genderCell.textContent = student.gender
+                    raceCell.textContent = student.race
+                    studentNumberCell.textContent = student.student_number
+                    contactNumberCell.textContent = student.number
+                    emailCell.textContent = student.email
+                    facultyCell.textContent = student.faculty
+                    courseCell.textContent = student.course
+                    courseLevelCell.textContent = student.level
+                    yearOfStudyCell.textContent = student.year_of_study
+                    deleteCell.innerHTML = `<i class="fa-solid fa-trash-can delete"></i>`
+
+                }
+}
+
 if(studentsArray){
+    // Display items in localStorage array
     studentsArray.forEach(student => {
         if(tbody){
-            let row = `<tr>
-                                <td>${student.name}</td>
-                                <td>${student.surname}</td>             
-                                <td>${student.id}</td>  
-                                <td>${student.age}</td>  
-                                <td>${student.gender}</td>  
-                                <td>${student.race}</td>  
-                                <td>${student.student_number}</td>  
-                                <td>${student.number}</td>  
-                                <td>${student.email}</td>  
-                                <td>${student.faculty}</td>  
-                                <td>${student.course}</td>  
-                                <td>${student.level}</td>  
-                                <td>${student.year_of_study}</td>  
-                        </tr>`
-
-            tbody.innerHTML += row
+  
+            displayStudents(student)
         }
     })
 
+    if(tbody){
+        // Delete using dynamially created delete icon in <td>
+        tbody.addEventListener('click', function(e){
+            if(e.target.classList.contains("delete")){
+                
+                // Get the id from the parent card
+                const studentObjectElement = e.target.closest("[data-id]")
+                const targetStudentObjectId = studentObjectElement.dataset.id
 
+                deleteStudentObject(targetStudentObjectId)
+
+                // Remove from UI
+                studentObjectElement.remove()
+            }
+        })
+
+        //Helper function to delete student object
+
+        function deleteStudentObject(targetStudentObjectId){
+            // Remove object from localStorage
+            let studentsArray = JSON.parse(localStorage.getItem("studentsArray")) || []
+            studentsArray = studentsArray.filter(student => String(student.id) !== String(targetStudentObjectId))
+            localStorage.setItem("studentsArray", JSON.stringify(studentsArray))
+
+        }
+    }
+
+
+    // Use filter to search for items in localStorage, meaning in studentsArray.
     if(searchForm){
             searchBtn.addEventListener('click', function(e){
                 e.preventDefault()
@@ -111,7 +186,7 @@ if(studentsArray){
                                                             <li>${result.student_number}</li>
                                                             <li>${result.course}</li>
                                                         </ul>
-                                                        <img class="profile-image" src="/Student-Database-App/assets/profile-images/1.jpg" alt="myimage">
+                                                        <img class="profile-image" src="${result.student_picture}" alt="${result.name} ${result.surname} image">
                                                     </div>
 
                                                 
@@ -120,9 +195,12 @@ if(studentsArray){
                                             </div>`
                         
                             cardsContainer.innerHTML += studentCard
+                            
+                            console.log(typeof result.student_picture)
 
                     })
                         console.log(`${document.querySelectorAll(".studentCard").length} student cards were created, does this match the number of search results?`)
+                        
                         
 
                 }else{
@@ -140,22 +218,26 @@ if(studentsArray){
 
             })
     }
+
+
 }
 
-cardsContainer.addEventListener('click', function(e){
-                            if(e.target.classList.contains("profile-image")){
-                                // Get the id from the parent card
-                                const targetId = e.target.closest(".studentCard").dataset.id
+if(cardsContainer){
+    cardsContainer.addEventListener('click', function(e){
+                                if(e.target.closest(".studentCard")){
+                                    // Get the id from the parent card
+                                    const targetId = e.target.closest(".studentCard").dataset.id
 
-                                // Access the specific object
-                                const specificStudentObject = studentsArray.find(obj => obj.id == targetId)
+                                    // Access the specific object
+                                    const specificStudentObject = studentsArray.find(obj => obj.id == targetId)
 
-                                displaySpecificStudentInformation(specificStudentObject)
+                                    displaySpecificStudentInformation(specificStudentObject)
 
 
 
-                            }
-})
+                                }
+    })
+}
 
 function displaySpecificStudentInformation(specificStudentObject){
     close.style.display = 'flex'
@@ -190,15 +272,15 @@ function displaySpecificStudentInformation(specificStudentObject){
 
                                             <tbody>
                                                 <tr>
-                                                    <td class="student-picture">${specificStudentObject.image}</td>
+                                                    <td class="student-picture"><img class = "profile-image-in-search-results-table" src = "${specificStudentObject.student_picture}" alt = "${specificStudentObject.name} ${specificStudentObject.surname} image"></td>
                                                     <td>${specificStudentObject.name}</td>
                                                     <td>${specificStudentObject.surname}</td>
-                                                    <td>${specificStudentObject.id}</td>
+                                                    <td>${specificStudentObject.id_number}</td>
                                                     <td>${specificStudentObject.age}</td>
                                                     <td>${specificStudentObject.gender}</td>
                                                     <td>${specificStudentObject.race}</td>
                                                     <td>${specificStudentObject.student_number}</td>
-                                                    <td>${specificStudentObject.contact_number}</td>
+                                                    <td>${specificStudentObject.number}</td>
                                                     <td>${specificStudentObject.email}</td>
                                                     <td>${specificStudentObject.faculty}</td>
                                                     <td>${specificStudentObject.course}</td>
@@ -225,8 +307,18 @@ if(close){
 }
 
 
-if(form && !searchForm){
-    form.addEventListener('submit', function(e){
+// Helper to convert File to Base64 string
+function convertToBase64(file){
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader()
+        reader.readAsDataURL(file) //Creates a URL like string out of raw image
+        reader.onload = () => resolve(reader.result)
+        reader.onerror = (error) => reject(error)
+    })
+}
+
+if(registerForm && !searchForm){
+    registerForm.addEventListener('submit', async (e) => {
         e.preventDefault()
 
         // 1. Create a formData object from the form
@@ -235,48 +327,68 @@ if(form && !searchForm){
         // 2. Convert entries to a single object
         const studentObject = Object.fromEntries(formData.entries())
 
-        // 3. Push object into array
+        //3. Create a new object with a unique ID
 
+        const newStudentObject = {
+            ...studentObject,
+            id: crypto.randomUUID() //This generates a secure unique string ID
+        }
+
+        // 4. Find and convert any File objects into Base64
+        for(const[key, value] of formData.entries()){
+            if(value instanceof File && value.name){
+                newStudentObject[key] = await convertToBase64(value)
+            }
+        }
+
+        // 5.Retrieve, update and save the localStorage aray
+        // This has been done up top with JSON.parse(...)
+
+        // 6. Push object into array
         if(studentObject){
-            studentsArray.push(studentObject)
+            
+            studentsArray.push(newStudentObject) //Here I am pushing newStudentObject becuase it is the one with a unique ID
 
             localStorage.setItem("studentsArray", JSON.stringify(studentsArray))
+            
         }
 
-        if(tbody){
-            // Displaying the object data using a method better than innerHTML to avoid injection
+        // if(tbody){
+        //     // Displaying the object data using a method better than innerHTML to avoid injection
 
-            const newRow = tbody.insertRow(-1) // "-1" means last, so each row is added last
+        //     const newRow = tbody.insertRow(-1) // "-1" means last, so each row is added last
 
-            const nameCell = newRow.insertCell(0)
-            const surnameCell = newRow.insertCell(1)
-            const idCell = newRow.insertCell(2)
-            const ageCell = newRow.insertCell(3)
-            const genderCell = newRow.insertCell(4)
-            const raceCell = newRow.insertCell(5)
-            const studentNumberCell = newRow.insertCell(6)
-            const contactNumberCell = newRow.insertCell(7)
-            const emailCell = newRow.insertCell(8)
-            const facultyCell = newRow.insertCell(9)
-            const courseCell = newRow.insertCell(10)
-            const courseLevelCell = newRow.insertCell(11)
-            const yearOfStudyCell = newRow.insertCell(12)
+        //     const nameCell = newRow.insertCell(0)
+        //     const surnameCell = newRow.insertCell(1)
+        //     const idCell = newRow.insertCell(2)
+        //     const ageCell = newRow.insertCell(3)
+        //     const genderCell = newRow.insertCell(4)
+        //     const raceCell = newRow.insertCell(5)
+        //     const studentNumberCell = newRow.insertCell(6)
+        //     const contactNumberCell = newRow.insertCell(7)
+        //     const emailCell = newRow.insertCell(8)
+        //     const facultyCell = newRow.insertCell(9)
+        //     const courseCell = newRow.insertCell(10)
+        //     const courseLevelCell = newRow.insertCell(11)
+        //     const yearOfStudyCell = newRow.insertCell(12)
+        //     const StudentPictureCell = newRow.insertCell(13)
 
-            nameCell.textContent = studentObject.name.toUpperCase()
-            surnameCell.textContent = studentObject.surname.toUpperCase()
-            idCell.textContent = studentObject.id
-            ageCell.textContent = studentObject.age
-            genderCell.textContent = studentObject.gender.toUpperCase()
-            raceCell.textContent = studentObject.race
-            studentNumberCell.textContent = studentObject.student_number
-            contactNumberCell.textContent = studentObject.number
-            emailCell.textContent = studentObject.email.toUpperCase()
-            faculty.textContent = studentObject.faculty.toUpperCase()
-            courseCell.textContent = studentObject.course.toUpperCase()
-            courseLevelCell.textContent = studentObject.level.toUpperCase()
-            yearOfStudyCell.textContent = studentObject.year_of_study
+        //     nameCell.textContent = studentObject.name.toUpperCase()
+        //     surnameCell.textContent = studentObject.surname.toUpperCase()
+        //     idCell.textContent = studentObject.id
+        //     ageCell.textContent = studentObject.age
+        //     genderCell.textContent = studentObject.gender.toUpperCase()
+        //     raceCell.textContent = studentObject.race
+        //     studentNumberCell.textContent = studentObject.student_number
+        //     contactNumberCell.textContent = studentObject.number
+        //     emailCell.textContent = studentObject.email.toUpperCase()
+        //     facultyCell.textContent = studentObject.faculty.toUpperCase()
+        //     courseCell.textContent = studentObject.course.toUpperCase()
+        //     courseLevelCell.textContent = studentObject.level.toUpperCase()
+        //     yearOfStudyCell.textContent = studentObject.year_of_study
+        //     StudentPictureCell.textContent = studentObject.student_picture
 
-        }
+        // }
 
         console.log(studentsArray)
         e.target.reset()
@@ -284,3 +396,4 @@ if(form && !searchForm){
     })
 
 }
+
