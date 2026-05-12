@@ -79,6 +79,11 @@ notesArray.forEach(note => {
     displayNotesFromLocalStorage(note)
 });
 
+// What to display when notesArray is empty
+if(notesArray.length < 0 || notesArray.length ===0){
+    notesList.innerHTML = `<h2 class = "noNotes">No notes available press the "Add Notes +" button to add notes </h2>`
+}
+
 // Helper function to delete 
 function deleteNote(targetNoteId){
     // Remove object from localStorage
