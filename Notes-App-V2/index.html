@@ -1,7 +1,8 @@
 <!doctype html>
 <html>
     <head>
-        <title>Notes App</title>
+        <title>Notes App Version 2</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!--GOOGLE FONTS-->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,26 +27,29 @@
         <main>
 
             <form id="notesForm">
+                <label for="picture">Image</label>
+                <input type="file" name="picture" id="picture" accept="image/*">
+
+                
                 <label for="titleEl">Title:</label>
                 <input type="text" name="title" id="titleEl">
 
-                <label for="note-el">Add your note:</label>
-                <textarea id="note-el" name="note-el"></textarea>
+                <label for="note">Add your note:</label>
+                <textarea id="note" name="note"></textarea>
 
-                <button id="save">Save</button>
+                <button type="submit" id="save" >Save</button>
                 <button id="clear">Clear</button>
             </form>
             
             
             <section>
-                <div class="close-note">X</div>
                 <div id="displayNote"></div>
-                <ul id="notesList"></ul>
+                <div id="notesList" class="notesList"></div>
             </section>
 
-            
 
         </main>
+
 
         
         

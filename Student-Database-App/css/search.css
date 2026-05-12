@@ -1,6 +1,7 @@
+
 body{
-    /* background-image: url(../assets/backgrounds/university-background.jpg);
-    background-size: cover; */
+    /* background-image: url(../assets/backgrounds/university-background.jpg); */
+    /* background-size: cover; */
     background-color: #000000;
 
 }
@@ -10,7 +11,6 @@ body{
 /* Search */
 main {
     display: block;
-    margin-top: 120px;
     width: 100%;
     overflow-x: hidden;
 }
@@ -20,7 +20,7 @@ main .searchSection{
     justify-content: center;
     align-content: center;
     align-items: center;
-    margin: 50px auto;
+    margin: 90px auto;
     width: 100vw;
     max-height: 100vh;
 }
@@ -85,8 +85,6 @@ main .searchSection form button:hover{
 /* Search Results */
 main .studentCardsSection{
     display: none;
-    align-items: center;
-    /* margin: auto auto; */
     background-color: #EEE;
     width: 100%;
     height: 100vh;
@@ -96,28 +94,48 @@ main .studentCardsSection{
 
 main .studentCardsSection h2{
     display: block;
+    align-items: center;
+    margin: auto auto;
     padding: 20px;
-    font-size: 18px;
+    font-size: 15px;
+    background-color: #000000;
+    color: #EEE;
+    width: fit-content;
+    border-radius: 4px;
 }
 
 main .studentCardsSection span{
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     margin: auto auto;
-    gap: 10px;
-    width: 100vw;
+
 }
 
 .studentCard{
-    border: 1px solid #746a6a;
+    border: 4px solid darkslategray;
     border-radius: 6px;
-    background-color: whitesmoke;
-    color: darkslateblue;
+    background-color: #6b6868;
+    color: #EEE;
     min-width: 300px;
     height: 150px;
     margin-top: 30px;
     margin-bottom: 30px;
     position: relative;
     cursor: pointer;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.4s ease;
+}
+
+.studentCard:hover{
+    z-index: 5;
+    opacity: 1;
+    transform: scale(1.4) translateY(-5px);
+}
+
+.studentCard .cardContents{
+    background-image: url(../assets/backgrounds/university-background.jpg) ;
+    background-size: cover;
+    height: 100%;
 }
 
 .studentCard .logo{
@@ -142,8 +160,11 @@ main .studentCardsSection span{
 .studentCard .details{
     display: flex;
     justify-content: center;
-    margin: 14px auto;
+    margin: auto auto;
     font-size: 17px;
+    font-weight: 600;
+    line-height: 1.4;
+    border-radius: 5px;
 }
 
 .studentCard .details ul{
@@ -158,13 +179,20 @@ main .studentCardsSection span{
 }
 
 .studentCard .details img{
-    width: 80px;
-    height: 80px;
+    width: 88px;
+    height: 88px;
     border-radius: 50%;
+    object-fit: cover;
     padding-bottom: 2px;
+    padding: 0;
+    margin-right: 5px;
+    margin-top: 2px;
+    outline: 2px solid darkslategray;
+    scale:1;
 }
 
 .studentCard h5{
+    align-items: center;
     text-align: center;
     margin: auto auto;
     background-color: darkslategray;
@@ -172,7 +200,7 @@ main .studentCardsSection span{
     position: absolute;
     bottom: 0;
     width: 100%;
-    padding: 2px;
+    padding: 1px;
 }
 
 /* Specific Student Information */
@@ -237,4 +265,5 @@ h2 span{
     width: 100%;
     height: 100px;
     border-radius: 50%;
+    scale: 1.1;
 }

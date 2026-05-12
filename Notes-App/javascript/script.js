@@ -11,7 +11,7 @@ let viewNotesBtn = document.getElementById("view-notes-btn")
 let main = document.querySelector("main")
 let mainSection = document.querySelector('main section')
 let closeNote = document.querySelector(".close-note")
-let form = document.querySelector("main form")
+let notesForm = document.getElementById("notesForm")
 
 
 let notesArray = JSON.parse(localStorage.getItem("notesArray")) || []

@@ -102,6 +102,16 @@ function displayStudents(student){
                 }
 }
 
+//Helper function to delete student object
+
+function deleteStudentObject(targetStudentObjectId){
+    // Remove object from localStorage
+    let studentsArray = JSON.parse(localStorage.getItem("studentsArray")) || []
+    studentsArray = studentsArray.filter(student => String(student.id) !== String(targetStudentObjectId))
+    localStorage.setItem("studentsArray", JSON.stringify(studentsArray))
+
+}
+
 if(studentsArray){
     // Display items in localStorage array
     studentsArray.forEach(student => {
@@ -127,15 +137,6 @@ if(studentsArray){
             }
         })
 
-        //Helper function to delete student object
-
-        function deleteStudentObject(targetStudentObjectId){
-            // Remove object from localStorage
-            let studentsArray = JSON.parse(localStorage.getItem("studentsArray")) || []
-            studentsArray = studentsArray.filter(student => String(student.id) !== String(targetStudentObjectId))
-            localStorage.setItem("studentsArray", JSON.stringify(studentsArray))
-
-        }
     }
 
 
@@ -168,6 +169,7 @@ if(studentsArray){
 
                     studentCardsSection.style.display = 'block'
 
+
                     numberOfStudentsFound.textContent = `Students Found: ${searchResults.length}`
 
                     cardsContainer.replaceChildren()
@@ -177,7 +179,7 @@ if(studentsArray){
                                                 <div class = "cardContents">
                                                     <div class = "logo">
                                                         <i class="fa fa-university" aria-hidden="true"></i>
-                                                        <h4>Javascript University</h4>
+                                                        <h4>JavaScript University</h4>
                                                     </div>
 
                                                     <div class="details">
@@ -233,8 +235,6 @@ if(cardsContainer){
 
                                     displaySpecificStudentInformation(specificStudentObject)
 
-
-
                                 }
     })
 }
@@ -271,7 +271,7 @@ function displaySpecificStudentInformation(specificStudentObject){
                                             </thead>
 
                                             <tbody>
-                                                <tr>
+                                                <tr data-id = ${specificStudentObject.id}>
                                                     <td class="student-picture"><img class = "profile-image-in-search-results-table" src = "${specificStudentObject.student_picture}" alt = "${specificStudentObject.name} ${specificStudentObject.surname} image"></td>
                                                     <td>${specificStudentObject.name}</td>
                                                     <td>${specificStudentObject.surname}</td>
@@ -286,12 +286,28 @@ function displaySpecificStudentInformation(specificStudentObject){
                                                     <td>${specificStudentObject.course}</td>
                                                     <td>${specificStudentObject.level}</td>
                                                     <td>${specificStudentObject.year_of_study}</td>
+                                                    <td><i class="fa-solid fa-trash-can delete"></i></td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                       </div>`
                                       
     specificStudentInformationSection.innerHTML = specificStudentInformation
+
+    // delete from array but from the specific student information section
+    specificStudentInformationSection.addEventListener('click', function(e){
+        if(e.target.classList.contains("delete")){
+                
+                // Get the id from the parent card
+                const specificStudentObjectElement = e.target.closest("[data-id]")
+                const targetSpecificStudentObjectId = specificStudentObjectElement.dataset.id
+
+                deleteStudentObject(targetSpecificStudentObjectId)
+
+                // Remove from UI
+                specificStudentObjectElement.remove()
+            }
+    })
 }
 
 if(close){
@@ -352,43 +368,6 @@ if(registerForm && !searchForm){
             localStorage.setItem("studentsArray", JSON.stringify(studentsArray))
             
         }
-
-        // if(tbody){
-        //     // Displaying the object data using a method better than innerHTML to avoid injection
-
-        //     const newRow = tbody.insertRow(-1) // "-1" means last, so each row is added last
-
-        //     const nameCell = newRow.insertCell(0)
-        //     const surnameCell = newRow.insertCell(1)
-        //     const idCell = newRow.insertCell(2)
-        //     const ageCell = newRow.insertCell(3)
-        //     const genderCell = newRow.insertCell(4)
-        //     const raceCell = newRow.insertCell(5)
-        //     const studentNumberCell = newRow.insertCell(6)
-        //     const contactNumberCell = newRow.insertCell(7)
-        //     const emailCell = newRow.insertCell(8)
-        //     const facultyCell = newRow.insertCell(9)
-        //     const courseCell = newRow.insertCell(10)
-        //     const courseLevelCell = newRow.insertCell(11)
-        //     const yearOfStudyCell = newRow.insertCell(12)
-        //     const StudentPictureCell = newRow.insertCell(13)
-
-        //     nameCell.textContent = studentObject.name.toUpperCase()
-        //     surnameCell.textContent = studentObject.surname.toUpperCase()
-        //     idCell.textContent = studentObject.id
-        //     ageCell.textContent = studentObject.age
-        //     genderCell.textContent = studentObject.gender.toUpperCase()
-        //     raceCell.textContent = studentObject.race
-        //     studentNumberCell.textContent = studentObject.student_number
-        //     contactNumberCell.textContent = studentObject.number
-        //     emailCell.textContent = studentObject.email.toUpperCase()
-        //     facultyCell.textContent = studentObject.faculty.toUpperCase()
-        //     courseCell.textContent = studentObject.course.toUpperCase()
-        //     courseLevelCell.textContent = studentObject.level.toUpperCase()
-        //     yearOfStudyCell.textContent = studentObject.year_of_study
-        //     StudentPictureCell.textContent = studentObject.student_picture
-
-        // }
 
         console.log(studentsArray)
         e.target.reset()

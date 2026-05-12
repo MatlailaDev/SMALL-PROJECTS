@@ -1,0 +1,329 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body{
+    font-family: "Roboto", sans-serif;
+    font-size: 1rem;
+    background-color: #172815;
+    text-align: center;
+    color: #1D201F;
+    min-height: 100vh;
+    overflow-y: scroll;
+
+    /* Scrollbar */
+
+     /* Hide scrollbar for Firefox */
+    scrollbar-width: none;
+
+    /* Hide scrollbar for IE and Edge */
+    -ms-overflow-style: none;
+    
+    /* Ensure scrolling is still possible */
+    overflow: auto; 
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+html::-webkit-scrollbar, 
+body::-webkit-scrollbar {
+    display: none;
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    background-color: #181D27;
+    margin-bottom: 10px;
+    /* border-bottom: 2px solid #ECE5F0; */
+    width: 100%;
+    height: 70px;
+}
+
+header h1{
+    padding: 8px;
+    margin-left: 10px;
+    color: #ECE5F0;
+    width: 185px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: auto 0;
+
+}
+
+header h1 span{
+    padding: 7px;
+}
+
+header .add-note-btn, header .view-notes-btn{
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    text-align: center;
+    margin: auto 10px;
+    padding: 8px;
+    color: #012622;
+    border: none;
+    border-radius: 5px;
+}
+
+header .add-note-btn span{
+    color: #012622;
+    font-size: 30px;
+    margin-left: 8px;
+    text-align: center;
+}
+
+header .add-note-btn:hover, .add-note-btn span:hover{
+    background-color: #E98A15;
+}
+
+header .view-notes-btn{
+    display: none;
+}
+
+a{
+    text-decoration: none;
+    position: absolute;
+    right: 4px;
+    color: #ECE5F0;
+    font-size: 17px;
+}
+
+a:hover{
+    color: #E98A15;
+}
+
+main{
+    display: flex;
+    justify-content: center;
+    gap: 250px;
+    /* margin: 50px auto; */
+    
+}
+
+main form{
+    display: none;
+    margin-top: 100px;
+    width: 100%;
+}
+
+
+main form label{
+    display: block;
+    font-size: 25px;
+    padding: 10px 0;
+    color: #ECE5F0;
+}
+
+main input{
+    height: 40px;
+    width: 30%;
+}
+
+main form input:first-of-type{
+    color: #000000;
+    background-color: rgb(226, 225, 225);
+    padding-bottom: 50px;
+    margin-bottom: 40px;
+}
+
+main form input::file-selector-button{
+    border: none;
+    border-radius: 2px;
+    padding: 10px;
+    align-items: center;
+    align-content: center;
+    background-color: #000000;
+    color: #ECE5F0;
+}
+
+
+main textarea{
+    height: 190px;
+    width: 30%;
+}
+
+main form input, main form textarea{
+    display: block;
+    margin: auto auto;
+    padding: 10px;
+    font-size: 20px;
+    border: none;
+    border-radius: 4px;
+    color: #1D201F;
+}
+
+main textarea:focus, input:focus{
+    outline: none;
+    border: none;
+    box-shadow: none;
+}
+
+main button{
+    left: 0;
+    margin: 20px 10px;
+    padding: 20px 50px;
+    border: none;
+    border-radius: 6px;
+    background-color: #E98A15;
+    font-weight: 700;
+    color: #1D201F;
+}
+
+main button:first-of-type:hover{
+    background-color: #ECE5F0;
+}
+
+main button:nth-of-type(2):hover{
+    background-color: #960200;
+   
+}
+
+main section{
+    overflow-y: auto;
+    scrollbar-width: 2px;
+    /* scrollbar-color: #012622; */
+    width: 99%;
+    height: 85vh;
+    margin: auto auto;
+    background-color: #E98A15;
+    border-radius: 8px;
+}
+
+/* Width of the scrollbar */
+main section::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Style the track */
+main section::-webkit-scrollbar-track {
+    background: #ECE5F0;
+    border-radius: 10px;
+}
+
+/* Style the thumb */
+main section::-webkit-scrollbar-thumb {
+    background: #E98A15;
+    border-radius: 5px;
+}
+
+/* Change color on hover */
+main section::-webkit-scrollbar-thumb:hover {
+    width: 9px;
+    background: #960200;
+}
+
+
+
+main section .close-note{
+    display: none;
+    color: #181D27;
+    font-size: 20px;
+    border: 1px solid #000000;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    float: right;
+    margin-top: 5px;
+    margin-right: 5px;
+    text-align: center;
+    color: #ECE5F0;
+    background-color: #181D27;
+}
+
+main section .openedNote{
+    margin-top: 5px;
+    text-align: justify;
+    padding: 20px;
+}
+
+main section .openedNote img{
+    width: 350px;
+    height: 100%;
+    border-radius: 3px;
+    
+}
+
+main section .openedNote h2{
+    margin-bottom: 40px;
+    width: fit-content;
+    margin: 40px auto;
+    padding: 15px;
+    background-color: #181D27;
+    color: #ECE5F0;
+    border-radius: 8px;
+}
+
+
+main section .notesList{
+    display: block;
+    align-items: center;
+}
+
+main section .notesList .note{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 23px;
+    border-radius: 8px;
+    width: 370px;
+    height: 35px;
+    margin: auto auto;
+    color: #000000;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    align-content: center;
+    position: relative;
+    cursor: pointer;
+    line-height: 1;
+}
+
+main section .notesList .note h3{
+    padding: 10px;
+    width: 300px;
+    background-color: #EEE;
+    border-radius: 8px;
+}
+
+main section .notesList .note span{
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    background-color: #5c0a0444;
+    height: 35px;
+    align-content: center;
+    right: 0;
+    position: absolute;
+}
+
+
+
+
+footer{
+    background-color: #181D27;
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+    height: 50px;
+}
+
+footer p{
+    color: #ECE5F0;
+    font-size: 14px;
+    padding: 20px;
+}
+
+
+@media screen and (max-width: 900px) {
+    
+    main form{
+        width: 100%;
+    }
+
+    main form input, main form textarea{
+        width: 95%;
+    }
+}
