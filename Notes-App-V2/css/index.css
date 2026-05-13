@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    
 }
 
 html, body{
@@ -190,7 +191,7 @@ main section{
     scrollbar-width: 2px;
     /* scrollbar-color: #012622; */
     width: 99%;
-    height: 90vh;
+    height: 80vh;
     margin: 90px auto;
     background-color: #E98A15;
     border-radius: 8px;
@@ -244,6 +245,7 @@ main section .openedNote{
     margin-top: 5px;
     text-align: justify;
     padding: 20px;
+    overflow-x: hidden;
 }
 
 
@@ -328,6 +330,11 @@ footer p{
         overflow: hidden;
     }
     
+    main section{
+        margin-top: 80px;
+        height: 80vh;
+        position: fixed;
+    }
     main form{
         /* margin-top: 10px; */
         width: 100%;

@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Cart Got Your Tongue</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--GOOGLE FONTS-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">  
+        
+        <!-- My project is using icons from Solid, Sharp Thin, Sharp Duotone Thin + Brands -->
+        <link href="../assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
+        <link href="../assets/fontawesome/css/brands.css" rel="stylesheet" />
+        <link href="../assets/fontawesome/css/solid.css" rel="stylesheet" />
+        <link href="../assets/fontawesome/css/sharp-thin.css" rel="stylesheet" />
+        <link href="../assets/fontawesome/css/sharp-duotone-thin.css" rel="stylesheet" />
+        <!--MY STYLES-->
+        <link rel="stylesheet" href="./css/index.css">
+    </head>
+    <body>
+        <header>
+            <h1>Carted<span><i class="fa-solid fa-table-cells"></i></span></h1>
+
+            <p>
+                <form id="searchForm">
+                    <input type="text" id="search" name="search" placeholder="Search">
+                    <label for="search"></label>
+                    <button type="submit">Search</button>
+                </form>
+            </p>
+
+            <button class="cartBtn" id="cartBtn" onclick="openSideCart()">Cart <span><i class="fa-solid fa-cart-shopping"></i></span></button>
+        </header>
+        
+        <main>
+            <section class="sideCart" id="sideCart">
+                <a href="javascript:void(0)" class="closeSideCartBtn" onclick="closeSideCart()">&times;</a>
+                <h4>Cart</h4>
+                <ul>
+                    <li>Cart Item</li>
+                    <li>Cart Item</li>
+                    <li>Cart Item</li>
+                    <li>Cart Item</li>
+                    <li>Cart Item</li>
+                    <li>Cart Item</li>
+                    <li>Cart Item</li>
+                </ul>
+                
+            </section>
+
+            <section class="hero">
+                <p>Shop Fresh</p>
+            </section>
+
+            <section class="productsSection">
+                <h1>Products</h1>
+                <div class="productsContainer" id="productsContainer"></div>
+            </section>
+
+        </main>
+
+
+        
+        
+        <footer>
+            <p>For more of my work visit "Portfolio link"</p>
+        </footer>
+        
+        <script src="./javascript/script.js"></script>
+    </body>
+</html>
