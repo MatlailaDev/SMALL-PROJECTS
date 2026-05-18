@@ -25,11 +25,11 @@
                 <form id="searchForm">
                     <input type="search" id="search" name="search" placeholder="Search">
                     <label for="search"></label>
-                    <button type="submit">Search</button>
+                    <button type="submit"><i class="fa-solid fa-search"></i></button>
                 </form>
             </p>
 
-            <button class="cartBtn" id="cartBtn" onclick="openSideCart()">Cart <span><i class="fa-solid fa-cart-shopping"></i></span></button>
+            <button class="cartBtn" id="cartBtn" onclick="openSideCart()"><i class="fa-solid fa-cart-shopping"><span></span></i></button>
         </header>
         
         <main>
@@ -38,8 +38,10 @@
                 <div class = "cart-heading">Cart</div>
                 <div id="sideCartItemsContainer"></div>
                 
-                <div class="amount">Amount</div>
-                <button id=""></button>
+                <div class="sidecartfooter">
+                    <div class="total-amount" id="total-amount">Total amount: R5000</div>
+                    <button id="proceed-to-pay-btn" class="proceed-to-pay-btn">Proceed to pay</button>
+                </div>
             </section>
 
             <section class="hero">
