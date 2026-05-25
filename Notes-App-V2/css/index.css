@@ -307,7 +307,9 @@ main section .notesList .note span{
     position: absolute;
 }
 
-
+main section .notesList .note span:hover{
+    color: #ECE5F0;
+}
 
 
 footer{

@@ -103,10 +103,16 @@ notesList.addEventListener('click', function(e){
 
         const targetNoteId = noteObjectElement.dataset.id
 
-        deleteNote(targetNoteId)
+        let deleteCheck = prompt("Are you sure you want to delete your note? enter Y/N")
 
-        // Remove from UI
-        noteObjectElement.remove()
+        if(deleteCheck == "Y" || deleteCheck == "y"){
+            deleteNote(targetNoteId)
+
+            // Remove from UI
+            noteObjectElement.remove()
+        }else{
+            return
+        }
     }
 })
 

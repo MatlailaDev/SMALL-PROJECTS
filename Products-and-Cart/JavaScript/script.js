@@ -3,7 +3,7 @@ let sideCartItemsContainer = document.getElementById("sideCartItemsContainer")
 let cartIconNumber = document.querySelector("header .cartBtn i span")
 let numberOfItemsInCart = document.querySelector(".cart-heading")
 let productPage = document.getElementById("productPage")
-// let totalAmount = document.getElementById("total-amount")
+let totalCartAmount = document.getElementById("total-cart-amount")
 
 
 
@@ -132,7 +132,6 @@ function openSideCart(){
     sideCartItemsContainer.style.display = 'block'
     if(window.innerWidth < 450){
         document.getElementById("sideCart").style.width = "100%"
-        // document.querySelector("main").style.marginRight = "450px"
     }else if(window.innerWidth > 450){
         document.getElementById("sideCart").style.width = "450px"
     }
@@ -144,6 +143,16 @@ function closeSideCart(){
     document.getElementById("sideCart").style.width = "0"
     // document.querySelector("main").style.marginRight = "0"
 }
+
+//number of items in the cart must show near the cart icon in header]
+// I must figure out how to increment number of carts on cart button icon when new item is added to cart but for now I will simply show it
+function numberOfCartItems(){
+    if(numberOfItemsInCart){
+        cartIconNumber.innerHTML = cartArray.length
+    }
+}    
+
+numberOfCartItems()                    
 
 // Onclick functions to increment and decrement product quantity
 if(productsContainer){
@@ -166,12 +175,6 @@ if(productsContainer){
 }
 
 
-//number of items in the cart must show near the cart icon in header]
-// I must figure out how to increment number of carts on cart button icon when new item is added to cart but for now I will simply show it
-if(numberOfItemsInCart){
-    cartIconNumber.innerHTML = cartArray.length
-}
-
 
 // I want to click addToCart and add the clicked product to cart by accessing its original object and pushing it to cartArray then using it to create a cart item
 // So the first thing is to access the original object
@@ -190,10 +193,7 @@ if(productsContainer){
 
             // Add Quantity key/value to object
             specificProductObject.quantity = e.target.closest(".productCard").querySelector(".quantity_display").textContent
-            // newSpecificProductObject = {
-            //     ...specificProductObject,
-            //     newQuantity: e.target.closest(".productCard").document.querySelector(".quantity_display").value
-            // }
+            
 
             
             // Call the function that pushes this object to the cart array
@@ -208,12 +208,32 @@ if(productsContainer){
                     // Swap out add to cart button with added to cart button
                     e.target.closest(".productCard").querySelector(".added-to-cart").style.display = 'block'
                     e.target.closest(".productCard").querySelector(".add-to-cart").style.display = 'none'
-                
+                    
+                    // Push the object not in cart to cart
                     pushToCart(specificProductObject)
+
+                    // Show the element in the cart
+                    if(sideCartItemsContainer){
+                        createCartItems(specificProductObject)
+                        let cartProductItem = createCartItems(specificProductObject)
+                        sideCartItemsContainer.innerHTML += cartProductItem
+                        
+                    }
+                    
+
+                    displayCountOfCartItems()
+                    // increment the number of items in cart using function numberOfCartItems
+                    numberOfCartItems()
+
+                    // Update the total amount
+                    updateAmount()
+
+
                 }
 
         }
     })
+
 
 }
 
@@ -255,33 +275,62 @@ function createCartItems(specificProductObject){
         }
 }
 
-if(sideCartItemsContainer || numberOfItemsInCart){
-    cartArray.forEach(cartProduct => {
-        let cartProductItem = createCartItems(cartProduct)
-        
-        sideCartItemsContainer.innerHTML += cartProductItem
-        // Although fror now it makes sense to count the number of items in cart array the true count will be the count of items including their quantity
+function displayCountOfCartItems(){
+    if(cartArray.length > 0){
         numberOfItemsInCart.innerHTML = `<h4>There are <span>${cartArray.length} items</span> in your cart</h4>`
-
-
-    })
-
+    }else{
+        numberOfItemsInCart.innerHTML = `<h4>There are <span>0 items</span> in your cart</h4>`
+    }
 }
+
+displayCountOfCartItems()
+
+function showAddedItemInCart(){
+    if(sideCartItemsContainer || numberOfItemsInCart){
+        cartArray.forEach(cartProduct => {
+            let cartProductItem = createCartItems(cartProduct)
+            
+            sideCartItemsContainer.innerHTML += cartProductItem
+    
+        })
+
+    }
+}
+
+showAddedItemInCart()
 
 
 // Calculate total amount
-if(sideCartItemsContainer){
-    function calculateTotalAmount(){
-        for(let i=0; i<cartArray.length; i++){
-            console.log(cartArray[i].productPrice)
-        }
+function createAmountsArray(){
+    // I need to read fresh from localStorage so increment/decrement changes are reflected
+    const freshCartArray = JSON.parse(localStorage.getItem("cartArray")) //This way when the function runs it always goes and retrieves cartArray in that state at that time
+    const amountsArray = []
+    for(let i=0; i<freshCartArray.length; i++){
+        amountsArray[i] = freshCartArray[i].productPrice * freshCartArray[i].quantity
     }
 
-    calculateTotalAmount()
-
-    // let totalAmount = calculateTotalAmount()
-
+    return amountsArray
 }
+
+
+function calculateTotalAmount(){
+    const amounts = createAmountsArray()
+    if(amounts.length > 0){
+        return amounts.reduce((a,b) => a + b)
+    }
+}
+
+function updateAmount(){
+    const totalAmount = calculateTotalAmount()
+    
+    if(sideCartItemsContainer){
+        totalCartAmount.textContent = `R${parseFloat(totalAmount)}`
+    }
+}
+
+updateAmount()
+
+
 
 // Delete cart items
 if(sideCartItemsContainer){
@@ -343,21 +392,68 @@ if(productPage){
 
 if(sideCartItemsContainer){
     sideCartItemsContainer.addEventListener('click', function(e){
+        
         if(e.target.classList.contains("increment")){
             const display = e.target.closest(".cartProductCard").querySelector(".quantity_display")
             display.textContent = Number(display.textContent) + 1
+
+            const targetId = e.target.closest(".cartProductCard").dataset.id
+
+            let cartArray = JSON.parse(localStorage.getItem("cartArray"))
+
+            const objectInCartArray = cartArray.find(obj => obj.id == targetId)
+
+            objectInCartArray.quantity = display.textContent
+
+            localStorage.setItem("cartArray", JSON.stringify(cartArray))
+
+            e.target.closest(".cartProductCard").querySelector(".cartProductAmount").textContent = `R${parseFloat(objectInCartArray.productPrice * objectInCartArray.quantity)}`
             
+            updateAmount()   
+
         }
 
         if(e.target.classList.contains("decrement")){
             const display = e.target.closest(".cartProductCard").querySelector(".quantity_display")
             const current = parseInt(display.textContent)
-            if(current > 1){
-                display.textContent = current - 1
+
+            display.textContent = current - 1
+            
+            //Target the element to delete when decrement reaches 0\
+            const targetCartElement = e.target.closest("[data-id]")
+
+            const targetId = e.target.closest(".cartProductCard").dataset.id
+
+            let cartArray = JSON.parse(localStorage.getItem("cartArray"))
+
+            const objectInCartArray = cartArray.find(obj => obj.id == targetId)
+
+            objectInCartArray.quantity = display.textContent
+            
+            //I want to add the delete functionality here
+            if(objectInCartArray.quantity == "0"){
+                cartArray = cartArray.filter(obj => String(obj.id) !== String(targetId))
+                targetCartElement.remove()
             }
+
+            localStorage.setItem("cartArray", JSON.stringify(cartArray))
+
+            numberOfItemsInCart.innerHTML = `<h4>There are <span>${cartArray.length} items</span> in your cart</h4>`
+
+            e.target.closest(".cartProductCard").querySelector(".cartProductAmount").textContent = `R${parseFloat(objectInCartArray.productPrice * objectInCartArray.quantity)}`
+            
+            updateAmount()
         }
 
     })
+}
+
+function updateQuantity(objectInCartArray){
+    let cartArray = JSON.parse(localStorage.getItem("cartArray"))
+
+    objectInCartArray.quantity = display.textContent
+
+    localStorage.setItem("cartArray", JSON.stringify(cartArray))
 }
 
 // Product Page Functionality
@@ -390,7 +486,7 @@ if(productPage){
         productPage.innerHTML = `<div>
                                     <img  src = "${clickedProductObject.productImage}">
                                     <div>${clickedProductObject.productName}</div>
-                                    <div>${clickedProductObject.productPrice}</div>
+                                    <div>R${clickedProductObject.productPrice}</div>
                                     <div>${clickedProductObject.productDescription}</div>
                                 </div>`
     }
